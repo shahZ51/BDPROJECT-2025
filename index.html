@@ -72,7 +72,7 @@
                         row["Project Details"], row["Project Cost"], row["Status"], row["Comments"], row["Contact Info"]
                     ]).draw().node();
                     
-                    if (row["Status"].toLowerCase() === "completed") {
+                    if (row["Status"] && row["Status"].toLowerCase().trim() === "completed") {
                         $(rowNode).addClass("completed");
                     }
                 });
