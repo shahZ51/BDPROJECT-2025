@@ -64,16 +64,24 @@
     <script>
         $(document).ready(function() {
             $.getJSON('https://raw.githubusercontent.com/shahZ51/BDPROJECT-2025/main/projects_data.json', function(projectData) {
-                let table = $('#projectTable').DataTable();
-                
-                projectData.forEach(row => {
-                    let rowNode = table.row.add([
-                        row["SL#"], row["Project Name"], row["Location"], row["Family Structure"],
-                        row["Project Details"], row["Project Cost"], row["Status"], row["Comments"], row["Contact Info"]
-                    ]).draw().node();
-                    
-                    if (row["Status"] && row["Status"].toLowerCase().trim() === "completed") {
-                        $(rowNode).addClass("completed");
+                let table = $('#projectTable').DataTable({
+                    "destroy": true, // Ensures table refreshes properly
+                    "data": projectData,
+                    "columns": [
+                        { "data": "SL#" },
+                        { "data": "Project Name" },
+                        { "data": "Location" },
+                        { "data": "Family Structure" },
+                        { "data": "Project Details" },
+                        { "data": "Project Cost" },
+                        { "data": "Status" },
+                        { "data": "Comments" },
+                        { "data": "Contact Info" }
+                    ],
+                    "createdRow": function(row, data, dataIndex) {
+                        if (data["Status"] && data["Status"].toLowerCase().trim() === "completed") {
+                            $(row).addClass("completed");
+                        }
                     }
                 });
             });
