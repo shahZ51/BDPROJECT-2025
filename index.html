@@ -63,7 +63,7 @@
 
     <script>
         $(document).ready(function() {
-            $.getJSON('https://raw.githubusercontent.com/shahZ51/BDPROJECT-2025/refs/heads/main/projects_data.json', function(projectData) {
+            $.getJSON('https://raw.githubusercontent.com/shahZ51/BDPROJECT-2025/main/projects_data.json', function(projectData) {
                 let table = $('#projectTable').DataTable();
                 
                 projectData.forEach(row => {
